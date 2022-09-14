@@ -6,7 +6,7 @@ const client = new Discord.Client();
 const prefix = process.env.PREFIX;
 
 const fs = require('fs');
-const { startGreetingCrons } = require('./crons/test');
+const { startGreetingCrons } = require('./crons/greeting');
 
 client.commands = new Discord.Collection();
 

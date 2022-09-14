@@ -78,10 +78,10 @@ const goodNightCron = (client, userId) => {
 };
 
 const startGreetingCrons = (client, userId) => {
-  goodMorningCron(client, userId).start();
-  goodAfterNoonCron(client, userId).start();
-  goodEveningCron(client, userId).start();
-  goodNightCron(client, userId).start();
+  // goodMorningCron(client, userId).start();
+  // goodAfterNoonCron(client, userId).start();
+  // goodEveningCron(client, userId).start();
+  // goodNightCron(client, userId).start();
 };
 
 module.exports = {
