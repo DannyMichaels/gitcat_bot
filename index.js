@@ -46,6 +46,10 @@ client.on('message', async (message) => {
   if (command === 'meow_for_me') {
     client.commands.get('meow_for_me').execute(message, args);
   }
+
+  if (command === 'op.gg' || command === 'opgg') {
+    await client.commands.get('opgg-search').execute(message, args);
+  }
 });
 
 client.login(process.env.TOKEN); // when starting from terminal
