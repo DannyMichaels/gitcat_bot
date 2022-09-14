@@ -1,5 +1,7 @@
 const cron = require('node-cron');
 
+// https://blog.logrocket.com/task-scheduling-or-cron-jobs-in-node-using-node-cron/
+
 const testCron = (client, channelId) =>
   cron.schedule('5 * * * * *', (currentTimeIso) => {
     console.log('running a task every minute at the 5th second');
@@ -12,7 +14,7 @@ const testCron = (client, channelId) =>
   });
 
 const goodMorningCron = (client, userId) => {
-  const eightAM = '0 8 * * * *';
+  const eightAM = '0 8 * * *';
 
   return cron.schedule(
     eightAM,
@@ -28,7 +30,7 @@ const goodMorningCron = (client, userId) => {
 };
 
 const goodAfterNoonCron = (client, userId) => {
-  const onePM = '0 13 * * * *'; // 1pm everyday
+  const onePM = '0 13 * * *'; // 1pm everyday
 
   return cron.schedule(
     onePM,
@@ -46,7 +48,7 @@ const goodAfterNoonCron = (client, userId) => {
 };
 
 const goodEveningCron = (client, userId) => {
-  const sixPM = '0 18 * * * *';
+  const sixPM = '0 18 * * *';
 
   return cron.schedule(
     sixPM,
@@ -62,7 +64,7 @@ const goodEveningCron = (client, userId) => {
 };
 
 const goodNightCron = (client, userId) => {
-  const tenPM = '0 22 * * * *';
+  const tenPM = '0 22 * * *';
 
   return cron.schedule(
     tenPM,
@@ -78,10 +80,10 @@ const goodNightCron = (client, userId) => {
 };
 
 const startGreetingCrons = (client, userId) => {
-  // goodMorningCron(client, userId).start();
-  // goodAfterNoonCron(client, userId).start();
-  // goodEveningCron(client, userId).start();
-  // goodNightCron(client, userId).start();
+  goodMorningCron(client, userId).start();
+  goodAfterNoonCron(client, userId).start();
+  goodEveningCron(client, userId).start();
+  goodNightCron(client, userId).start();
 };
 
 module.exports = {
