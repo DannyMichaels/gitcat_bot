@@ -6,6 +6,7 @@ const client = new Discord.Client();
 const prefix = process.env.PREFIX;
 
 const fs = require('fs');
+const { startTestCron, testCron, startGreetingCrons } = require('./crons/test');
 
 client.commands = new Discord.Collection();
 
@@ -21,7 +22,8 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
   console.log(`${client.user.username} is online!`);
-
+  // testCron(client, process.env.TEST_CHANNEL_ID).start();
+  startGreetingCrons(client, process.env.CAT_OWNER_ID);
   // if (process.env.NODE_ENV === 'production') {
   //   client.channels.cache
   //     .get(process.env.GENERAL_CHANNEL_ID)
