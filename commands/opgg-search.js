@@ -30,7 +30,7 @@ module.exports = {
       );
     } catch (error) {
       console.log('opgg search error', error);
-      return message.channel.send('error', JSON.stringify(error));
+      return message.channel.send(`error: ${JSON.stringify(error)}`);
     }
   },
 };
