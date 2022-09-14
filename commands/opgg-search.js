@@ -18,9 +18,10 @@ module.exports = {
 
       const rank = `${data.solo_tier_info.tier} ${data.solo_tier_info.division} ${data.solo_tier_info.lp}LP`;
       return message.channel.send(
-        `Name: ${data.name} 
-        \nLevel: ${data.level} 
-        \nRank: ${rank}`,
+        `
+        Name: ${data.name}
+        Level: ${data.level} 
+        Rank: ${rank}`,
         { files: [data.profile_image_url] }
       );
     } catch (error) {
