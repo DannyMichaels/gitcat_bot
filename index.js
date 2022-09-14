@@ -61,6 +61,10 @@ client.on('message', async (message) => {
   if (command === 'stop_remind_gym') {
     stopGymReminderCron(message);
   }
+
+  if (command === 'joke') {
+    await client.commands.get('joke').execute(message, args);
+  }
 });
 
 client.login(process.env.TOKEN); // when starting from terminal
