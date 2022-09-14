@@ -46,10 +46,10 @@ const goodAfterNoonCron = (client, userId) => {
 };
 
 const goodEveningCron = (client, userId) => {
-  const sevenPM = '0 19 * * * *';
+  const sixPM = '0 18 * * * *';
 
   return cron.schedule(
-    sevenPM,
+    sixPM,
     (currentTimeIso) => {
       client.channels.cache
         .get(process.env.GENERAL_CHANNEL_ID)
