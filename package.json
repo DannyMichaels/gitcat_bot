@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "jest __tests__ --detectOpenHandles --forceExit --testTimeout=10000 ",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
