@@ -7,6 +7,7 @@ const prefix = process.env.PREFIX;
 
 const fs = require('fs');
 const { startGreetingCrons } = require('./crons/greeting');
+const { stopGymReminderCron } = require('./crons/remindGym');
 
 client.commands = new Discord.Collection();
 
@@ -51,6 +52,14 @@ client.on('message', async (message) => {
 
   if (command === 'op.gg' || command === 'opgg') {
     await client.commands.get('opgg-search').execute(message, args);
+  }
+
+  if (command === 'remind_gym') {
+    client.commands.get('remind-gym').execute(client, message, args);
+  }
+
+  if (command === 'stop_remind_gym') {
+    stopGymReminderCron(message);
   }
 });
 
