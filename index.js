@@ -21,8 +21,17 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
   console.log(`${client.user.username} is online!`);
-  // roleClaim(client)
+
+  // if (process.env.NODE_ENV === 'production') {
+  //   client.channels.cache
+  //     .get(process.env.GENERAL_CHANNEL_ID)
+  //     .send('GitCat online here!');
+  // }
 });
+
+// client.once('disconnect', () => {
+//   client.channels.cache.get(process.env.GENERAL_CHANNEL_ID).send('Good bye!');
+// });
 
 client.on('message', async (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
