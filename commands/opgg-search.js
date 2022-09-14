@@ -16,7 +16,11 @@ module.exports = {
     try {
       const data = await getOPGGData(summonerName, region);
 
-      const { tier, division, lp = 0 } = data.solo_tier_info;
+      const {
+        tier = null,
+        division = null,
+        lp = 0,
+      } = data.solo_tier_info || {};
 
       const rank = !tier ? 'Unranked' : `${tier} ${division} ${lp}LP`;
 
