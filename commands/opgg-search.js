@@ -24,6 +24,7 @@ module.exports = {
         { files: [data.profile_image_url] }
       );
     } catch (error) {
+      console.log('opgg search error', error);
       return message.channel.send('error', JSON.stringify(error));
     }
   },
