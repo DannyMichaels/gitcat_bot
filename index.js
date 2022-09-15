@@ -65,6 +65,10 @@ client.on('message', async (message) => {
   if (command === 'joke') {
     await client.commands.get('joke').execute(message, args);
   }
+
+  if (command === 'image') {
+    await client.commands.get('image').execute(message, args);
+  }
 });
 
-client.login(process.env.TOKEN); // when starting from terminal
+client.login(process.env.TOKEN);

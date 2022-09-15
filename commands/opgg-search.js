@@ -1,4 +1,5 @@
 const { getOPGGData } = require('../services/opgg');
+const { handleError } = require('../utils');
 
 module.exports = {
   name: 'opgg-search',
@@ -30,7 +31,7 @@ module.exports = {
       );
     } catch (error) {
       console.log('opgg search error', error);
-      return message.channel.send(`error: ${JSON.stringify(error)}`);
+      return handleError(message, error);
     }
   },
 };

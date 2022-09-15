@@ -1,4 +1,5 @@
 const { getRandomJoke } = require('../services/joke');
+const { handleError } = require('../utils');
 
 module.exports = {
   name: 'joke',
@@ -14,7 +15,7 @@ module.exports = {
 
       setTimeout(() => this.execute(), 100);
     } catch (error) {
-      return message.client.send(`error: ${JSON.stringify(error)}`);
+      return handleError(message, error);
     }
   },
 };
