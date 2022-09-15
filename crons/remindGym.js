@@ -18,12 +18,10 @@ const sevenAM = '0 0 7 * * *';
 
 let jobs = {};
 
-const startGymReminderCron = ({
-  client,
-  args = sevenAM.split(' '),
-  message,
-}) => {
-  const time = args.join(' ');
+const startGymReminderCron = ({ client, args = sevenAM, message }) => {
+  const actualArgs = args?.length ? args : sevenAM.split(' ');
+
+  const time = actualArgs.join(' ');
 
   if (jobs[message.author.id]) {
     return message.channel.send(

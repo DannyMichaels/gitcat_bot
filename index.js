@@ -55,7 +55,7 @@ client.on('message', async (message) => {
   }
 
   if (command === 'remind_gym') {
-    client.commands.get('remind-gym').execute(client, message, args);
+    await client.commands.get('remind-gym').execute(client, message, args);
   }
 
   if (command === 'stop_remind_gym') {
