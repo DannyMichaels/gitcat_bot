@@ -15,7 +15,7 @@ module.exports = {
         .setURL(meme.url)
         .setAuthor(meme.author)
         .setImage(meme.preview[meme.preview.length - 1])
-        .setDescription(`sub reddit: ${meme.subreddit}`);
+        .setDescription(`subreddit: ${meme.subreddit}`);
 
       return message.channel.send(embed);
     } catch (error) {
