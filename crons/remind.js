@@ -71,7 +71,7 @@ async function stopReminderCron({ args, message, guid }) {
   await jobs[guidResult].stop();
   jobs[guidResult] = null;
 
-  if (args[0]) {
+  if (args && args[0]) {
     await message.channel.send('Cancelled reminder');
   }
 
