@@ -47,7 +47,7 @@ client.on('message', async (message) => {
   }
 
   if (command === 'meow_for_me') {
-    client.commands.get('meow_for_me').execute(message, args);
+    await client.commands.get('meow_for_me').execute(message, args);
   }
 
   if (command === 'op.gg' || command === 'opgg') {
