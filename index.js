@@ -69,6 +69,10 @@ client.on('message', async (message) => {
   if (command === 'image') {
     await client.commands.get('image').execute(message, args);
   }
+
+  if (command === 'meme') {
+    await client.commands.get('meme').execute(message, args);
+  }
 });
 
 client.login(process.env.TOKEN);
