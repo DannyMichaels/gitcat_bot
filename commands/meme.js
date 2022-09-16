@@ -1,7 +1,7 @@
 const { getRandomMeme } = require('../services/meme');
 const { MessageEmbed } = require('discord.js');
 
-const handleError = require('../utils/handleError');
+const { handleError } = require('../utils');
 
 module.exports = {
   name: 'meme',
