@@ -73,6 +73,14 @@ client.on('message', async (message) => {
   if (command === 'meme') {
     await client.commands.get('meme').execute(message, args);
   }
+
+  if (command === 'reminder' || command === 'remind') {
+    await client.commands.get('remind').execute(client, message, args);
+  }
+
+  if (command === 'reminder_cancel') {
+    await client.commands.get('remind-cancel').execute(client, message, args);
+  }
 });
 
 client.login(process.env.TOKEN);
