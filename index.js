@@ -41,7 +41,7 @@ client.once('ready', () => {
     client.user.setActivity(
       `to ${client.guilds.cache
         .map((guild) => guild.memberCount)
-        .reduce((p, c) => p + c)} users`,
+        .reduce((acc, cv) => acc + cv)} users`,
       { type: 'LISTENING' }
     );
   }
