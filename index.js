@@ -34,8 +34,17 @@ client.once('ready', () => {
 
   const userName = client.users.cache.get(process.env.CAT_OWNER_ID).username;
 
-  // Listening to xxx users
-  client.user.setActivity(`${userName}`, { type: 'LISTENING' });
+  if (process.env.CAT_OWNER_ID) {
+    client.user.setActivity(`${userName}`, { type: 'LISTENING' });
+  } else {
+    // Listening to xxx users
+    client.user.setActivity(
+      `to ${client.guilds.cache
+        .map((guild) => guild.memberCount)
+        .reduce((p, c) => p + c)} users`,
+      { type: 'LISTENING' }
+    );
+  }
 });
 
 // client.once('disconnect', () => {
