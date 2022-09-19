@@ -25,11 +25,17 @@ client.once('ready', () => {
   console.log(`${client.user.username} is online!`);
   // testCron(client, process.env.TEST_CHANNEL_ID).start();
   startGreetingCrons(client, process.env.CAT_OWNER_ID);
+
   // if (process.env.NODE_ENV === 'production') {
   //   client.channels.cache
   //     .get(process.env.GENERAL_CHANNEL_ID)
   //     .send('GitCat online here!');
   // }
+
+  const userName = client.users.cache.get(process.env.CAT_OWNER_ID).username;
+
+  // Listening to xxx users
+  client.user.setActivity(`${userName}`, { type: 'LISTENING' });
 });
 
 // client.once('disconnect', () => {
