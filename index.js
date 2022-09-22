@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
+const discord = require('discord.js');
 require('dotenv').config();
 
-const client = new Discord.Client();
+const client = new discord.Client();
 
 const prefix = process.env.PREFIX;
 
@@ -9,7 +9,7 @@ const fs = require('fs');
 const { startGreetingCrons } = require('./crons/greeting');
 const { stopGymReminderCron } = require('./crons/remindGym');
 
-client.commands = new Discord.Collection();
+client.commands = new discord.Collection();
 
 const commandFiles = fs
   .readdirSync('./commands')
@@ -59,6 +59,10 @@ client.on('message', async (message) => {
 
   if (command === 'ping') {
     client.commands.get('ping').execute(message, args);
+  }
+
+  if (command === 'avatar') {
+    await client.commands.get('avatar').execute(message, args);
   }
 
   if (command === 'meow_for_me') {
