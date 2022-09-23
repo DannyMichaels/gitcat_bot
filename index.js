@@ -21,6 +21,8 @@ for (const file of commandFiles) {
   client.commands.set(command.name, command);
 }
 
+var musicUrls = [];
+
 client.once('ready', () => {
   console.log(`${client.user.username} is online!`);
   // testCron(client, process.env.TEST_CHANNEL_ID).start();
@@ -47,10 +49,6 @@ client.once('ready', () => {
   }
 });
 
-// client.once('disconnect', () => {
-//   client.channels.cache.get(process.env.GENERAL_CHANNEL_ID).send('Good bye!');
-// });
-
 client.on('message', async (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -65,8 +63,10 @@ client.on('message', async (message) => {
     await client.commands.get('avatar').execute(message, args);
   }
 
-  if (command === 'meow_for_me') {
-    await client.commands.get('meow_for_me').execute(message, args);
+  if (command === 'queue') {
+    await client.commands
+      .get('queue')
+      .execute(client, message, args, musicUrls);
   }
 
   if (command === 'op.gg' || command === 'opgg') {
@@ -99,6 +99,10 @@ client.on('message', async (message) => {
 
   if (command === 'reminder_cancel') {
     await client.commands.get('remind-cancel').execute(client, message, args);
+  }
+
+  if (command === 'meow_for_me') {
+    await client.commands.get('meow_for_me').execute(message, args);
   }
 });
 

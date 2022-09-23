@@ -24,7 +24,7 @@ module.exports = {
         .setDescription(`${user.tag}'s Avatar :`);
       message.channel.send(embed);
     } catch (error) {
-      handleError(message, error);
+      return handleError(message, error);
     }
   },
 };
