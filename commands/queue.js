@@ -1,7 +1,6 @@
 const ytdl = require('ytdl-core');
 const discord = require('discord.js');
 const { handleError } = require('../utils');
-require('ffmpeg-static');
 require('@discordjs/opus');
 
 module.exports = {

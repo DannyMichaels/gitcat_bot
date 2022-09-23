@@ -19,6 +19,7 @@
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^3.0.0",
     "moment": "^2.29.4",
+    "node-abort-controller": "^3.0.1",
     "node-cron": "^3.0.2",
     "nodemon": "^2.0.19",
     "uuidv4": "^6.2.13",

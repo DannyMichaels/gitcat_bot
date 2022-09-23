@@ -1,13 +1,13 @@
 const discord = require('discord.js');
 require('dotenv').config();
+const fs = require('fs');
+const { startGreetingCrons } = require('./crons/greeting');
+const { stopGymReminderCron } = require('./crons/remindGym');
+global.AbortController = require('node-abort-controller').AbortController;
 
 const client = new discord.Client();
 
 const prefix = process.env.PREFIX;
-
-const fs = require('fs');
-const { startGreetingCrons } = require('./crons/greeting');
-const { stopGymReminderCron } = require('./crons/remindGym');
 
 client.commands = new discord.Collection();
 
