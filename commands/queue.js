@@ -43,7 +43,15 @@ module.exports = {
           message.channel.send(embed);
         } else {
           // if not in the channel
-          await playSong(client, message, voiceChannel, musicUrls);
+          const voiceConnection = await voiceChannel.join();
+
+          await playSong(
+            voiceConnection,
+            client,
+            message,
+            voiceChannel,
+            musicUrls
+          );
         }
       }
     } catch (error) {
@@ -52,15 +60,19 @@ module.exports = {
   },
 };
 
-const playSong = async (client, message, voiceChannel, musicUrls) => {
+const playSong = async (
+  voiceConnection,
+  client,
+  message,
+  voiceChannel,
+  musicUrls
+) => {
   const streamOptions = {
     seek: 0,
     volume: 1,
   };
 
   try {
-    const voiceConnection = await voiceChannel.join();
-
     const stream = ytdl(musicUrls[0], { filter: 'audioonly' });
     const dispatcher = voiceConnection.play(stream, streamOptions);
 
