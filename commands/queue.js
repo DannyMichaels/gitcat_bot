@@ -78,7 +78,7 @@ const playSong = async (client, message, voiceChannel, musicUrls) => {
 
     dispatcher.on('finish', () => {
       // play the next song
-      musicUrls = musicUrls.filter((url) => url !== musicUrls[0]);
+      musicUrls.shift();
 
       if (!musicUrls.length) {
         voiceChannel.leave();
