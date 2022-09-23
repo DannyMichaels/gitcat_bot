@@ -107,6 +107,6 @@ const playSong = async (
       return handleError(message, err);
     });
   } catch (error) {
-    throw error;
+    return handleError(message, error);
   }
 };
