@@ -11,7 +11,16 @@ module.exports = {
       const musicChannelId = '875569218257575976';
       let url = args[0];
 
-      let voiceChannel = client.channels.cache.get(musicChannelId);
+      // let voiceChannel = client.channels.cache.get(musicChannelId);
+
+      const voiceChannel = message.member.voice.channel;
+
+      if (!voiceChannel) {
+        return handleError(
+          message,
+          'You need to be in a voice channel to play music!'
+        );
+      }
 
       if (!ytdl.validateURL(url)) {
         return handleError(message, 'Invalid URL!');
@@ -34,7 +43,7 @@ module.exports = {
           message.channel.send(embed);
         } else {
           // if not in the channel
-          await playSong(message, voiceChannel, musicUrls);
+          await playSong(client, message, voiceChannel, musicUrls);
         }
       }
     } catch (error) {
@@ -43,7 +52,7 @@ module.exports = {
   },
 };
 
-const playSong = async (message, voiceChannel, musicUrls) => {
+const playSong = async (client, message, voiceChannel, musicUrls) => {
   const streamOptions = {
     seek: 0,
     volume: 1,
@@ -55,14 +64,21 @@ const playSong = async (message, voiceChannel, musicUrls) => {
     const stream = ytdl(musicUrls[0], { filter: 'audioonly' });
     const dispatcher = voiceConnection.play(stream, streamOptions);
 
-    //    const embed = new discord.MessageEmbed();
-    // embed.setAuthor(client.user.username, client.user.displayAvatarURL);
-    // embed.setDescription("Currrently playing...");
-    // message.channel.send(embed);
+    const { videoDetails } = await ytdl.getInfo(musicUrls[0]);
 
-    dispatcher.on('end', () => {
+    const song = {
+      title: videoDetails.title,
+      url: videoDetails.video_url,
+    };
+
+    const embed = new discord.MessageEmbed();
+    embed.setAuthor(client.user.username, client.user.displayAvatarURL);
+    embed.setDescription(`Currrently playing: ${song.title}`);
+    message.channel.send(embed);
+
+    dispatcher.on('finish', () => {
       // play the next song
-      musicUrls.shift();
+      musicUrls = musicUrls.filter((url) => url !== musicUrls[0]);
 
       if (!musicUrls.length) {
         voiceChannel.leave();
@@ -70,9 +86,13 @@ const playSong = async (message, voiceChannel, musicUrls) => {
         const songWaitTimeout = 5000;
 
         setTimeout(() => {
-          playSong(message, voiceChannel, musicUrls);
+          playSong(client, message, voiceChannel, musicUrls);
         }, songWaitTimeout);
       }
+    });
+
+    dispatcher.on('error', (err) => {
+      return handleError(message, err);
     });
   } catch (error) {
     throw error;
