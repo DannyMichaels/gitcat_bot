@@ -80,17 +80,19 @@ const playSong = async (
     });
     const dispatcher = voiceConnection.play(stream, streamOptions);
 
-    const { videoDetails } = await ytdl.getInfo(musicUrls[0]);
+    dispatcher.on('start', async () => {
+      const { videoDetails } = await ytdl.getInfo(musicUrls[0]);
 
-    const song = {
-      title: videoDetails.title,
-      url: videoDetails.video_url,
-    };
+      const song = {
+        title: videoDetails.title,
+        url: videoDetails.video_url,
+      };
 
-    const embed = new discord.MessageEmbed();
-    embed.setAuthor(client.user.username, client.user.displayAvatarURL);
-    embed.setDescription(`Currrently playing: ${song.title}`);
-    message.channel.send(embed);
+      const embed = new discord.MessageEmbed();
+      embed.setAuthor(client.user.username, client.user.displayAvatarURL);
+      embed.setDescription(`Currrently playing: ${song.title}`);
+      message.channel.send(embed);
+    });
 
     dispatcher.on('finish', () => {
       // play the next song
