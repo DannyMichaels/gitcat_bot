@@ -73,7 +73,11 @@ const playSong = async (
   };
 
   try {
-    const stream = ytdl(musicUrls[0], { filter: 'audioonly' });
+    const stream = ytdl(musicUrls[0], {
+      filter: 'audioonly',
+      quality: 'highestaudio',
+      highWaterMark: 1 << 25,
+    });
     const dispatcher = voiceConnection.play(stream, streamOptions);
 
     const { videoDetails } = await ytdl.getInfo(musicUrls[0]);
