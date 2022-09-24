@@ -7,8 +7,11 @@ module.exports = {
       return message.channel.send(
         'You have to be in a voice channel to stop the music!'
       );
-    if (!musicUrls)
+
+    if (!musicUrls?.length)
       return message.channel.send('There is no song that I could skip!');
+
+    return musicUrls.shift();
     // musicUrls.connection.dispatcher.end();
   },
 };
