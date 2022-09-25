@@ -12,8 +12,9 @@ const run = async () => {
   await client.login(process.env.TOKEN);
 
   // https://stackoverflow.com/questions/63329199/how-can-i-pass-an-argument-into-my-javascript-code-from-command-line
-  const msg = process.argv[2];
-  await sendMsg(client, msg);
+  const [_a, _b, ...message] = process.argv;
+
+  await sendMsg(client, message);
 };
 
 run();
