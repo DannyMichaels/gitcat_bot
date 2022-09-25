@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const sendMsg = async (client, msg) => {
   setTimeout(() => {
-    res = client.channels.cache.get(process.env.GENERAL_CHANNEL_ID).send(msg);
+    client.channels.cache.get(process.env.GENERAL_CHANNEL_ID).send(msg);
   }, 3000);
 };
 
