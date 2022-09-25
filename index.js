@@ -44,7 +44,7 @@ client.once('ready', () => {
   } else {
     // Listening to xxx users
     client.user.setActivity(
-      `to ${client.guilds.cache
+      `${client.guilds.cache
         .map((guild) => guild.memberCount)
         .reduce((acc, cv) => acc + cv)} users`,
       { type: 'LISTENING' }
