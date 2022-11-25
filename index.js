@@ -24,6 +24,11 @@ for (const file of commandFiles) {
 var musicUrls = [];
 
 client.once('ready', () => {
+  // setInterval(() => {
+  //   client.channels.cache
+  //     .get('1042198909604335656')
+  //     .send('<@119888511112314880> ping!');
+  // }, 1000);
   console.log(`${client.user.username} is online!`);
   // testCron(client, process.env.TEST_CHANNEL_ID).start();
 
@@ -37,7 +42,7 @@ client.once('ready', () => {
   //     .send('GitCat online here!');
   // }
 
-  const userName = client.users.cache.get(process.env.CAT_OWNER_ID).username;
+  const userName = client.users.cache.get(process.env.CAT_OWNER_ID)?.username;
 
   if (process.env.CAT_OWNER_ID && process.env.LISTEN_TO_OWNER === 'true') {
     client.user.setActivity(`${userName}`, { type: 'LISTENING' });
